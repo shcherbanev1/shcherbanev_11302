@@ -27,11 +27,6 @@ public class Main {
 		
 		System.out.println(task1(users, subs));
 		
-		
-		for (int i = 0; i < subs.length; i++) {
-			System.out.println(subs[i]);
-		}
-		
 	}
 	
 	public static User[] fillUser(File file) throws FileNotFoundException {
@@ -83,7 +78,6 @@ public class Main {
 						count += 1;
 					}
 				}
-				System.out.println(count);
 				if (count > maxcount) {
 					maxcount = count;
 					ans = users[i].getName();
