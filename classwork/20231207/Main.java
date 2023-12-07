@@ -1,7 +1,9 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 
+// 1ый подписан на 2ого
 public class Main {
 	
 	public static void main(String [] args) {
@@ -23,16 +25,13 @@ public class Main {
 			System.out.println("error");
 		}
 		
-		if (users != null && subs != null) {
-
-			for (int i = 0; i < users.length; i++) {
-				System.out.println(users[i]);
-			}
-			for (int i = 0; i < subs.length; i++) {
-				System.out.println(subs[i]);
-			}
-			
+		System.out.println(task1(users, subs));
+		
+		
+		for (int i = 0; i < subs.length; i++) {
+			System.out.println(subs[i]);
 		}
+		
 	}
 	
 	public static User[] fillUser(File file) throws FileNotFoundException {
@@ -64,6 +63,36 @@ public class Main {
 			subs[i] = sub;
 		}
 		return subs;
+	}
+	
+	public static String task1(User [] users, Subscription [] subs) {
+		String ans = "";
+		if (users != null && subs != null) {
+			int maxcount = 0;
+			for (int i = 0; i < users.length; i++) {
+				// идем по пользователям, для каждого пользователя считаем сколько чел
+				// из его города подписаны на него. для этого смотрит в subs
+				// второй должен совпадать с айдишником пользователя по которому мы проходимся (currentId)
+				// а первый должен быть из того же города что и второй
+				int count = 0;
+				
+				// int currentId = users[i].getId();
+				for (int j = 0; j < subs.length; j++) {
+					String s = users[subs[j].getFirstId() - 1].getCity();
+					if (users[i].getId() == subs[j].getSecondId()  && users[i].getCity().equals(s)) {
+						count += 1;
+					}
+				}
+				System.out.println(count);
+				if (count > maxcount) {
+					maxcount = count;
+					ans = users[i].getName();
+				}
+				
+			}
+			
+		}
+		return ans;
 	}
 	
 }
