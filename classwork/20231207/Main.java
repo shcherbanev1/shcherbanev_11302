@@ -40,15 +40,8 @@ public class Main {
 			System.out.println("error in reading Members.txt");
 		}
 		
-		for (int i = 0; i < groups.length; i++) {
-			System.out.println(groups[i]);
-		}
-		
-		for (int i = 0; i < members.length; i++) {
-			System.out.println(members[i]);
-		}
-		
 		System.out.println(task1(users, subs));
+		System.out.println(task2(groups, members, users));
 		
 		
 		
@@ -145,6 +138,33 @@ public class Main {
 		return ans;
 	}
 	
+	// работает неправильно
+	public static String task2(Group [] groups, Member [] members, User [] users) {
+		String ans = "";
+		if (members != null && groups != null && users != null) {
+			// идем по группам, смотрим ее город. дальше идем по мемберс,
+			// members[j].group_id() == groups[i].getId()
+			// если город совпадает то флаг = false
+			for (int i = 0; i < groups.length; i++) {
+				boolean flag = true;
+				for (int j = 0; j < members.length && flag == true; j++) {
+					String s = users[members[j].getUserId() - 1].getCity();
+					if (groups[i].getId() == members[j].getGroupId()) {
+						if (groups[i].getCity().equals(s)) {
+							flag = false;
+						}
+					}
+					
+				}
+				if (flag) {
+					ans = groups[i].getName();
+					return ans;
+				}
+			}
+
+		}
+		return ans;
+	}
 	
 	
 }

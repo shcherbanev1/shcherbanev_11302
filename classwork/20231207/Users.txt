@@ -1,6 +1,6 @@
 5
-1 amir Kazan
-2 lida Snz
-3 kostya Kazan
-4 nikita Kazan
-5 liza Yoshkor-ola
+1 amir kazan
+2 lida snz
+3 kostya kazan
+4 nikita kazan
+5 liza yoshkor-ola
