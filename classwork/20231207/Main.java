@@ -3,29 +3,54 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 
-// 1ый подписан на 2ого
 public class Main {
 	
 	public static void main(String [] args) {
 		
 		User [] users = null;
 		Subscription [] subs = null;
+		Group [] groups = null;
+		Member [] members = null;
 		
 		try {
 			File usersFile = new File("Users.txt");
 			users = fillUser(usersFile);
 		} catch (Exception e) {
-			System.out.println("error");
+			System.out.println("error in reading Users.txt");
 		}
 		
 		try {
 			File subsFile = new File("Subscriptions.txt");
 			subs = fillSubs(subsFile);
 		} catch (Exception e) {
-			System.out.println("error");
+			System.out.println("error in reading Subscriptions.txt");
+		}
+		
+		try {
+			File groupFile = new File("Groups.txt");
+			groups = fillGroup(groupFile);
+		} catch (Exception e) {
+			System.out.println("error in reading Groups.txt");
+		}
+		
+		try {
+			File membersFile = new File("Members.txt");
+			members = fillMembers(membersFile);
+		} catch (Exception e) {
+			System.out.println("error in reading Members.txt");
+		}
+		
+		for (int i = 0; i < groups.length; i++) {
+			System.out.println(groups[i]);
+		}
+		
+		for (int i = 0; i < members.length; i++) {
+			System.out.println(members[i]);
 		}
 		
 		System.out.println(task1(users, subs));
+		
+		
 		
 	}
 	
@@ -59,6 +84,37 @@ public class Main {
 		}
 		return subs;
 	}
+
+	public static Group[] fillGroup(File file) throws FileNotFoundException {
+		Scanner sc = new Scanner(file);
+		int n = sc.nextInt();
+		Group[] groups = new Group[n];
+		sc.nextLine();
+		for (int i = 0; i < n; i++) {
+			String[] str = sc.nextLine().split(" ");
+			int id = Integer.parseInt(str[0]);
+			String name = str[1];
+			String city = str[2];
+			Group group = new Group(id, name, city);
+			groups[i] = group;
+		}
+		return groups;
+	}
+	
+	public static Member[] fillMembers(File file) throws FileNotFoundException {
+		Scanner sc = new Scanner(file);
+		int n = sc.nextInt();
+		Member[] members = new Member[n];
+		sc.nextLine();
+		for (int i = 0; i < n; i++) {
+			String[] str = sc.nextLine().split(" ");
+			int user_id = Integer.parseInt(str[0]);
+			int group_id = Integer.parseInt(str[1]);
+			Member member = new Member(user_id, group_id);
+			members[i] = member;
+		}
+		return members;
+	}
 	
 	public static String task1(User [] users, Subscription [] subs) {
 		String ans = "";
@@ -88,5 +144,7 @@ public class Main {
 		}
 		return ans;
 	}
+	
+	
 	
 }
