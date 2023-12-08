@@ -20,7 +20,7 @@ public class Member {
 	}
 	
 	public String toString() {
-		return user.toString() + " " + group.toString();
+		return user.getName() + " is a member of group" + group.getName();
 	}
 	
 }

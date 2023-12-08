@@ -10,7 +10,6 @@ public interface IStorage {
 	Group [] getGroups();
 	Subscription [] getSubs();
 	Member [] getMembers();
-
 	User getUserById(int id);
 	Group getGroupById(int id); 
 	

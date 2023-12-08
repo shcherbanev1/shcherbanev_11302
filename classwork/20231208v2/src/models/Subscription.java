@@ -19,7 +19,7 @@ public class Subscription {
 	}
 	
 	public String toString() {
-		return user1.toString() + " " + user2.toString();
+		return user1.getName() + " subscribed to " + user2.getName();
 	}
 	
 }

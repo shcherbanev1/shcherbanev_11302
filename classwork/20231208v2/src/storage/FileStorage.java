@@ -4,7 +4,6 @@ import models.*;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 
 public class FileStorage extends AbstractStorage {
 	
@@ -12,11 +11,15 @@ public class FileStorage extends AbstractStorage {
 		
 	}
 	
-	public void init() throws FileNotFoundException {
-		initUsers(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Users.txt"));
-		initGroups(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Groups.txt"));
-		initSubs(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Subscriptions.txt"));
-		initMembers(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Members.txt"));
+	public void init() {
+		try {
+			initUsers(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Users.txt"));
+			initGroups(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Groups.txt"));
+			initSubs(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Subscriptions.txt"));
+			initMembers(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Members.txt"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void initUsers(File file) throws FileNotFoundException {

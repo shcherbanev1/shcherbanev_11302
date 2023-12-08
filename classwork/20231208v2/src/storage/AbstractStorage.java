@@ -28,7 +28,7 @@ public abstract class AbstractStorage implements IStorage {
 		return null;
 	}
 	
-	abstract public void init() throws FileNotFoundException;
+	abstract public void init();
 	
 	public User [] getUsers() {
 		return users;
