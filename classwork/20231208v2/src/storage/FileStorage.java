@@ -13,16 +13,16 @@ public class FileStorage extends AbstractStorage {
 	}
 	
 	public void init() throws FileNotFoundException {
-		initUsers(new File("resources/Users.txt"));
-		initGroups(new File("resources/Groups.txt"));
-		initSubs(new File("resources/Subscriptions.txt"));
-		initMembers(new File("resources/Members.txt"));
+		initUsers(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Users.txt"));
+		initGroups(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Groups.txt"));
+		initSubs(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Subscriptions.txt"));
+		initMembers(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Members.txt"));
 	}
 	
 	public void initUsers(File file) throws FileNotFoundException {
 		Scanner sc = new Scanner(file);
 		int n = sc.nextInt();
-		User[] users = new User[n];
+		this.users = new User[n];
 		sc.nextLine();
 		for (int i = 0; i < n; i++) {
 			String[] str = sc.nextLine().split(" ");
@@ -37,7 +37,7 @@ public class FileStorage extends AbstractStorage {
 	public void initSubs(File file) throws FileNotFoundException {
 		Scanner sc = new Scanner(file);
 		int n = sc.nextInt();
-		Subscription[] subs = new Subscription[n];
+		this.subs = new Subscription[n];
 		sc.nextLine();
 		for (int i = 0; i < n; i++) {
 			String[] str = sc.nextLine().split(" ");
@@ -51,14 +51,15 @@ public class FileStorage extends AbstractStorage {
 	public void initGroups(File file) throws FileNotFoundException {
 		Scanner sc = new Scanner(file);
 		int n = sc.nextInt();
-		Group[] groups = new Group[n];
+		this.groups = new Group[n];
 		sc.nextLine();
 		for (int i = 0; i < n; i++) {
 			String[] str = sc.nextLine().split(" ");
 			int id = Integer.parseInt(str[0]);
 			String name = str[1];
 			String city = str[2];
-			Group group = new Group(id, name, city);
+			User admin = getUserById(Integer.parseInt(str[3]));
+			Group group = new Group(id, name, city, admin);
 			this.groups[i] = group;
 		}
 	}
@@ -66,14 +67,13 @@ public class FileStorage extends AbstractStorage {
 	public void initMembers(File file) throws FileNotFoundException {
 		Scanner sc = new Scanner(file);
 		int n = sc.nextInt();
-		Member[] members = new Member[n];
+		this.members = new Member[n];
 		sc.nextLine();
 		for (int i = 0; i < n; i++) {
 			String[] str = sc.nextLine().split(" ");
 			User user = getUserById(Integer.parseInt(str[0]));
 			Group group = getGroupById(Integer.parseInt(str[1]));
-			User admin = getUserById(Integer.parseInt(str[2]));
-			Member member = new Member(user, group, admin);
+			Member member = new Member(user, group);
 			this.members[i] = member;
 		}
 	}
