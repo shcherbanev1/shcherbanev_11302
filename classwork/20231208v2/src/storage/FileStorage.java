@@ -13,10 +13,10 @@ public class FileStorage extends AbstractStorage {
 	
 	public void init() {
 		try {
-			initUsers(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Users.txt"));
-			initGroups(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Groups.txt"));
-			initSubs(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Subscriptions.txt"));
-			initMembers(new File("C:/Users/shche/Documents/infa/shcherbanev_11302/classwork/20231208v2/resources/Members.txt"));
+			initUsers(new File("resources/Users.txt"));
+			initGroups(new File("resources/Groups.txt"));
+			initSubs(new File("resources/Subscriptions.txt"));
+			initMembers(new File("resources/Members.txt"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
