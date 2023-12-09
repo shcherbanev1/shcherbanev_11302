@@ -43,4 +43,42 @@ public abstract class AbstractStorage implements IStorage {
 		return members;
 	}
 	
+	public int getCountGroupsMembers(Group group) {
+		int count = 0;
+		for (Member member : members) {
+			if (group.getId() == member.getGroup().getId()) {
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	// работа не проверена его вообще надо в сервисы
+	// Storage - только к тому что в его атрибутах
+	public Group [] getGroupTask1() {
+		Group [] ans = new Group[groups.length];
+		for (Group group : groups) {
+			int count = 0;
+			int countGroupMembers = 0;
+			for (Member member : members) {
+				if (group.getId() == member.getGroup().getId()) {
+					countGroupMembers++;
+					if (!(group.getAdmin().getCity().equals(member.getUser().getCity()))) {
+						count++;
+					}
+				}
+			}
+			if (count > (double)countGroupMembers / 2) {
+				for(int i = 0; i < ans.length; i++) {
+					if(ans[i] == null) {
+						ans[i] = group;
+						break;
+					}
+				}
+			}
+			
+		}
+		return ans;
+	}
+		
 }
