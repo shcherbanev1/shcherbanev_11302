@@ -27,18 +27,33 @@ public class Service {
 		return db.getMembers();
 	}
 	
-	
-	// хрень какая-то вместо нее должно быть то что в AbstractStorage щас
-	/*
-	public Group [] getGroupParametr1() {
-		Group [] allGroups = db.getGroups();
-		
-		for (Group group : allGroups) {
-			String adminCity = group.getAdmin().getCity();
+	public Group [] getGroupTask1() {
+		Group [] ans = new Group[this.getGroups().length];
+		Group [] groups = this.getGroups();
+		Member [] members = this.getMembers();
+		for (Group group : groups) {
+			int count = 0;
+			int countGroupMembers = 0;
+			for (Member member : members) {
+				if (group.getId() == member.getGroup().getId()) {
+					countGroupMembers++;
+					if (!(group.getAdmin().getCity().equals(member.getUser().getCity()))) {
+						count++;
+					}
+				}
+			}
+			if (count > (double)countGroupMembers / 2) {
+				for(int i = 0; i < ans.length; i++) {
+					if(ans[i] == null) {
+						ans[i] = group;
+						break;
+					}
+				}
+			}
 			
 		}
+		return ans;
 	}
-	*/
 	
 	public int getCountMembersFromGroup(Group group) {
 		int count = 0;
@@ -88,13 +103,22 @@ public class Service {
 		}
 		return flag1 && flag2;
 	}
-		
+	
+	public static boolean contains(int[] array, int num	) {
+		for (int elem : array) {
+			if (elem == num) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public boolean isFriendly(Group group, int n) {
-		User [] users = this.getUsersFromGroup(group);
+		User [] groupMembers = this.getUsersFromGroup(group);
 		if (n == 1) {
-			for (int i = 0; i < users.length; i++) {
-				for (int j = i + 1; j < users.length; j++) {
-					if (!(this.isFriends(users[i], users[j]))) {
+			for (int i = 0; i < groupMembers.length; i++) {
+				for (int j = i + 1; j < groupMembers.length; j++) {
+					if (!(this.isFriends(groupMembers[i], groupMembers[j]))) {
 						return false;
 					}
 				}
@@ -103,10 +127,10 @@ public class Service {
 			return true;
 		} else if (n == 2) {
 			boolean ans = true;
-			for (int i = 0; i < users.length; i++) {
+			for (int i = 0; i < groupMembers.length; i++) {
 				boolean flag = false;
-				for (int j = 0; j < users.length; j++) {
-					if (this.isFriends(users[i], users[j])) {
+				for (int j = 0; j < groupMembers.length; j++) {
+					if (this.isFriends(groupMembers[i], groupMembers[j])) {
 						flag = true;	
 					}
 				}
@@ -116,7 +140,27 @@ public class Service {
 			}
 			return ans;
 		} else if (n == 3) {
-			return false;
+			int [] colored = new int[groupMembers.length];
+			User [] q = new User[groupMembers.length];
+			int nextRead = 0;
+			int nextNeighbour = 0;
+			q[nextNeighbour] = groupMembers[0];
+			nextNeighbour++;
+			do {
+				colored[nextRead] = q[nextRead].getId();
+				for (User member : groupMembers) {
+					if (isFriends(q[nextRead], member)) {
+						if (!(contains(colored, member.getId()))) {
+							q[nextNeighbour] = member;
+							nextNeighbour++;
+						}
+					}
+				}
+				nextRead++;
+			} while (nextRead != nextNeighbour);
+			System.out.println(nextNeighbour);
+			System.out.println(groupMembers.length);
+			return nextNeighbour == groupMembers.length;
 		} else {
 			return false;
 		}

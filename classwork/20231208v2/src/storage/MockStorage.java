@@ -34,20 +34,29 @@ public class MockStorage extends AbstractStorage {
 		subs = new Subscription[17];
 		subs[0] = new Subscription(users[5], users[1]);
 		subs[1] = new Subscription(users[1], users[5]);
+		
 		subs[2] = new Subscription(users[2], users[1]);
 		subs[3] = new Subscription(users[1], users[2]);
+		
 		subs[4] = new Subscription(users[3], users[0]);
-		subs[5] = new Subscription(users[3], users[1]);
+		subs[5] = new Subscription(users[0], users[3]);
+
 		subs[6] = new Subscription(users[1], users[3]);
-		subs[7] = new Subscription(users[0], users[3]);
+		subs[7] = new Subscription(users[3], users[1]);
+		
 		subs[8] = new Subscription(users[6], users[2]);
+		
 		subs[9] = new Subscription(users[7], users[4]);
 		subs[10] = new Subscription(users[4], users[7]);
+		
 		subs[11] = new Subscription(users[3], users[8]);
 		subs[12] = new Subscription(users[8], users[3]);
+		
 		subs[13] = new Subscription(users[5], users[0]);
+		
 		subs[14] = new Subscription(users[1], users[7]);
-		subs[15] = new Subscription(users[5], users[1]);
+		subs[15] = new Subscription(users[7], users[1]);
+		
 		subs[16] = new Subscription(users[9], users[0]);
 	}
 
@@ -61,15 +70,17 @@ public class MockStorage extends AbstractStorage {
 	
 	public void initMembers() {
 		members = new Member[9];
-		members[0] = new Member(users[0], groups[1]);
-		members[1] = new Member(users[0], groups[3]);
-		members[2] = new Member(users[1], groups[2]);
-		members[3] = new Member(users[2], groups[0]);
-		members[4] = new Member(users[1], groups[1]);
-		members[5] = new Member(users[3], groups[0]);
-		members[6] = new Member(users[5], groups[2]);
-		members[7] = new Member(users[7], groups[2]);
-		members[8] = new Member(users[4], groups[2]);
+		members[0] = new Member(users[1], groups[2]);
+		members[1] = new Member(users[3], groups[2]);
+		members[2] = new Member(users[4], groups[2]);
+		members[3] = new Member(users[5], groups[2]);
+		members[4] = new Member(users[7], groups[2]);
+		
+		
+		members[5] = new Member(users[0], groups[1]);
+		members[6] = new Member(users[0], groups[3]);
+		members[7] = new Member(users[1], groups[1]);
+		members[8] = new Member(users[2], groups[0]);
 	}
 	
 }

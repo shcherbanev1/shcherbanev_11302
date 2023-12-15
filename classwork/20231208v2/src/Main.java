@@ -14,40 +14,25 @@ public class Main {
 			e.printStackTrace();
 		}
 		Service s = new Service(db1);
-		User [] a = s.getUsers();
-		Subscription [] b = s.getSubs();
-		Group [] c = s.getGroups();
-		Member [] d = s.getMembers();
+		User [] users = s.getUsers();
+		Subscription [] subs = s.getSubs();
+		Group [] groups = s.getGroups();
+		Member [] members = s.getMembers();
 		
-		boolean answer1 = s.isFriends(a[0], a[2]);
-		User [] answer3 = s.getUsersFromGroup(c[2]);
-		//boolean answer4 = s.isFriendly(c[1], 1);
-		boolean answer5 = s.isFriendly(c[2], 2);
-		//System.out.println(answer1);
-		for (int i = 0; i < answer3.length; i++) {
-			System.out.println(answer3[i]);
+		boolean [] answer = {s.isFriends(users[1], users[3]),
+							s.isFriends(users[1], users[5]),
+							s.isFriends(users[1], users[7]),
+							s.isFriends(users[7], users[4])};
+		for (int i = 0; i < answer.length; i++) {
+			System.out.println(answer[i]);
 		}
-		//System.out.println(answer4);
-		System.out.println(answer5);
+		User [] answer1 = s.getUsersFromGroup(groups[2]);;
+		boolean answer2 = s.isFriendly(groups[2], 3);
 		
-		
-		/*
-		for (int i = 0; i < a.length; i++) {
-			System.out.println(a[i]);
+		for (int i = 0; i < answer1.length; i++) {
+			System.out.println(answer1[i]);
 		}
-		
-		for (int i = 0; i < b.length; i++) {
-			System.out.println(b[i]);
-		}
-		
-		for (int i = 0; i < c.length; i++) {
-			System.out.println(c[i]);
-		}
-		
-		for (int i = 0; i < d.length; i++) {
-			System.out.println(d[i]);
-		}
-		*/
+		System.out.println(answer2);
 	}
 	
 }
