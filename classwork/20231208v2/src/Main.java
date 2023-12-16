@@ -13,7 +13,7 @@ public class Main {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Service s = new Service(db1);
+		Service s = new Service(db2);
 		User [] users = s.getUsers();
 		Subscription [] subs = s.getSubs();
 		Group [] groups = s.getGroups();
@@ -26,6 +26,22 @@ public class Main {
 		for (int i = 0; i < answer.length; i++) {
 			System.out.println(answer[i]);
 		}
+		int count1 = 0;
+		int count2 = 0;
+		int count3 = 0;
+		for (Group group : groups) {
+			if (s.isFriendly(group, 1)) {
+				count1++;
+			}
+			if (s.isFriendly(group, 2)) {
+				count2++;
+			}
+			if (s.isFriendly(group, 3)) {
+				count3++;
+			}
+		}
+		System.out.println(count1 + " " + count2 + " " + count3);
+		/*
 		User [] answer1 = s.getUsersFromGroup(groups[2]);;
 		boolean answer2 = s.isFriendly(groups[2], 3);
 		
@@ -33,6 +49,7 @@ public class Main {
 			System.out.println(answer1[i]);
 		}
 		System.out.println(answer2);
+		*/
 	}
 	
 }

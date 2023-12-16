@@ -104,10 +104,23 @@ public class Service {
 		return flag1 && flag2;
 	}
 	
-	public static boolean contains(int[] array, int num	) {
+	public static boolean contains(int[] array, int num) {
 		for (int elem : array) {
 			if (elem == num) {
 				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean contains(User[] array, int num) {
+		for (User user : array) {
+			try {
+				if (user.getId() == num) {
+					return true;
+				}
+			} catch (Exception e) {
+				return false;
 			}
 		}
 		return false;
@@ -146,20 +159,18 @@ public class Service {
 			int nextNeighbour = 0;
 			q[nextNeighbour] = groupMembers[0];
 			nextNeighbour++;
-			do {
+			while (nextRead != nextNeighbour) {
 				colored[nextRead] = q[nextRead].getId();
 				for (User member : groupMembers) {
 					if (isFriends(q[nextRead], member)) {
-						if (!(contains(colored, member.getId()))) {
+						if ((!contains(colored, member.getId())) && (!contains(q, member.getId()))) {
 							q[nextNeighbour] = member;
 							nextNeighbour++;
 						}
 					}
 				}
 				nextRead++;
-			} while (nextRead != nextNeighbour);
-			System.out.println(nextNeighbour);
-			System.out.println(groupMembers.length);
+			}
 			return nextNeighbour == groupMembers.length;
 		} else {
 			return false;

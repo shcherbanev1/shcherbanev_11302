@@ -74,8 +74,8 @@ public class FileStorage extends AbstractStorage {
 		sc.nextLine();
 		for (int i = 0; i < n; i++) {
 			String[] str = sc.nextLine().split(" ");
-			User user = getUserById(Integer.parseInt(str[0]));
-			Group group = getGroupById(Integer.parseInt(str[1]));
+			User user = getUserById(Integer.parseInt(str[1])); // в Groups.txt сначала номер группы потом подписчик
+			Group group = getGroupById(Integer.parseInt(str[0]));
 			Member member = new Member(user, group);
 			this.members[i] = member;
 		}
