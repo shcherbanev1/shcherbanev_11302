@@ -25,9 +25,9 @@ public class Task06 {
 					{1,0,1,1,0,1,1,1,0,0,1,0,0,1,0,1,0,1,1,1},
 					{0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0}};
 					
-		double count = 0;
-		double countA = 0;
-		double countB = 0;
+		int count = 0;
+		int countA = 0;
+		int countB = 0;
 		double max = 0;
 		double s = 0;
 		String ans = "";
@@ -48,7 +48,8 @@ public class Task06 {
 					countB += a[j][k];
 					
 					}
-				s = (2*count) / (countA + countB);
+				s = (double)(2*count) / (countA + countB);
+				
 				//System.out.println("ca = " + countA + "cb = " + countB); 
 				if (max < s) {
 					max = s;
