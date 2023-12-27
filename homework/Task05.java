@@ -18,5 +18,7 @@ public class Task05 {
 			k += 1;
 		}
 		System.out.println("ln(1 + " + x + ") = " + s);
+		System.out.println("Math.log(1 + " + x + ") = " + Math.log1p(x));
+		System.out.println("dif = " + Math.abs(Math.log1p(x) - s));
 	}
 }
