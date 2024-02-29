@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 public class MyLinkedList {
 
-    private Node head;
-    private Node tail;
-    private int size = 0;
+    protected Node head;
+    protected Node tail;
+    protected int size = 0;
 
     public void add(int data) {
         Node newNode = new Node(data);
@@ -68,39 +68,6 @@ public class MyLinkedList {
         }
     }
 
-    public void linearInputList(int n) {
-        Scanner sc = new Scanner(System.in);
-        for (int i = 0; i < n; i++) {
-            int value = sc.nextInt();
-            Node newNode = new Node(value);
-            if (size == 0) {
-                add(value);
-            } else {
-                Node curNode = head;
-                Node prevNode = null;
-                while (curNode.getNext() != null && value > curNode.getData()) {
-                    prevNode = curNode;
-                    curNode = curNode.getNext();
-                }
-                if (curNode.getNext() == null && value > curNode.getData()) {
-                    curNode.setNext(newNode);
-                    tail = newNode;
-                }
-                else if (prevNode == null) {
-                    newNode.setNext(head);
-                    head = newNode;
-                } else if (value > curNode.getData()) {
-                    curNode.setNext(newNode);
-                    tail = newNode;
-                } else {
-                    prevNode.setNext(newNode);
-                    newNode.setNext(curNode);
-                }
-                size++;
-            }
-        }
-    }
-
     @Override
     public String toString() {
         String str;
@@ -121,7 +88,7 @@ public class MyLinkedList {
     // методы восприняты как абстрактные таски - просто на работу с ЛинкедЛистом
     // но выносить в отдельный класс не захотелось :/
     public static boolean delete2First(MyLinkedList list) {
-        if (list.size < 3) {
+        if (list.size < 2) {
             return false;
         }
         Node curNode = list.head;
@@ -173,13 +140,13 @@ public class MyLinkedList {
         Node prevNode = null;
         boolean deleted = false;
 
-        if (curNode.getData() == value) {
-            if (curNode == list.tail) {
-                list.head = null;
-                list.size--;
-                return true;
-            }
-        }
+//        if (curNode.getData() == value) {
+//            if (curNode == list.tail) {
+//                list.head = null;
+//                list.size--;
+//                return true;
+//            }
+//        }
 
         while (curNode != null) {
             if (curNode.getData() == value) {
