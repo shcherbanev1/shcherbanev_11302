@@ -31,6 +31,7 @@ public class StreamHandling {
                 .average().orElse(-1);
         System.out.println(avgScore);
 
+        // 18
         String longestLastName = students.stream()
                 .filter(student -> student.getScore() >= 56)
                 .map(Student::getLastName)

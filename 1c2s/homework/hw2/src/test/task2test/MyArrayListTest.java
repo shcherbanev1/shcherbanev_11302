@@ -37,7 +37,7 @@ public class MyArrayListTest {
         boolean r2 = list.add("did");
         boolean r3 = list.add("done");
         assertEquals(3, list.size());
-        assertTrue(r1 & r2 & r3);
+        assertTrue(r1 && r2 && r3);
     }
 
     @Test
@@ -84,8 +84,8 @@ public class MyArrayListTest {
         list.add("2");
         list.add("3"); // removed
         list.add("4");
-        String r = list.remove(2);
-        assertEquals("3", r);
+        String r = list.remove(3);
+        assertEquals("4", r);
         assertEquals("1", list.get(0));
         assertEquals("2", list.get(1));
         assertEquals("4", list.get(2));

@@ -20,10 +20,10 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
             table[index] = new LinkedList<>();
         }
         for (Entry<K, V> entry : table[index]) {
-            System.out.println(key);
-            System.out.println(entry.getKey());
+//            System.out.println(key);
+//            System.out.println(entry.getKey());
             if (key.equals(entry.getKey())) {
-                System.out.println(key);
+//                System.out.println(key);
                 V old = entry.getValue();
                 entry.setValue(value);
                 return old;

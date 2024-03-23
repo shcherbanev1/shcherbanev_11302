@@ -24,7 +24,6 @@ public class MyArrayList<T> implements MyList<T> {
             array = newArray;
         }
     }
-
     private void validateIndex(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
