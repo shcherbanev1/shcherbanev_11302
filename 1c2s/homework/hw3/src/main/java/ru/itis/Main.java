@@ -18,7 +18,6 @@ package ru.itis;
             стрим не должен менять исходный массив Stream(<T> [] array)
          */
 
-import java.util.Arrays;
 import java.util.Comparator;
 
 public class Main {
@@ -50,7 +49,7 @@ public class Main {
         StreamApi<Student> stream17 = new StreamApi<>(students);
         Double avgScore = stream17
                 .filter(s -> s.getScore() >= 56)
-                .map(Student::getScore)
+                .mapToInt(Student::getScore)
                 .avg();
         System.out.println(avgScore);
 

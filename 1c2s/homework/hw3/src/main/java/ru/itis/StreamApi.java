@@ -1,12 +1,10 @@
 package ru.itis;
 
 import java.util.*;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class StreamApi<T> {
 
-    private T[] data;
+    protected T[] data;
 
     public StreamApi(T[] array) {
         data = array;
@@ -64,17 +62,6 @@ public class StreamApi<T> {
         return data.length;
     }
 
-    public Double sum() {
-        if (!isNumber(data)) {
-            throw new IllegalArgumentException();
-        }
-        double sum = 0.0;
-        for (T item : data) {
-            sum += ((Number) item).doubleValue();
-        }
-        return sum;
-    }
-
         public Optional<T> max(Comparator<? super T> comparator) {
         if (!isComparable(data)) {
             throw new IllegalArgumentException();
@@ -107,20 +94,6 @@ public class StreamApi<T> {
         return Optional.of(min);
     }
 
-    public Double avg() {
-        if (!isNumber(data)) {
-            throw new IllegalArgumentException();
-        }
-        if (data.length == 0) {
-            return 0.0;
-        }
-        double sum = 0.0;
-        for (T item : data) {
-            sum += ((Number) item).doubleValue();
-        }
-        return sum / data.length;
-    }
-
     private static <T> T[] copy(T[] src, int length) {
         T[] dest = (T[]) new Object[length];
         for (int i = 0; i < length; i++) {
@@ -129,9 +102,14 @@ public class StreamApi<T> {
         return dest;
     }
 
-    private static <T> boolean isNumber(T[] data) {
-        return data[0] instanceof Number;
+    public IntStreamApi mapToInt(MyFunction<? super T, Integer> mapper) {
+        Integer[] mappedData = new Integer[data.length];
+        for (int i = 0; i < data.length; i++) {
+            mappedData[i] = mapper.apply(data[i]);
+        }
+        return new IntStreamApi(mappedData);
     }
+
 
     private static <T> boolean isComparable(T[] data) {
         return data[0] instanceof Comparable;
