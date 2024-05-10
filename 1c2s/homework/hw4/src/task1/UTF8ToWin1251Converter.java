@@ -40,5 +40,7 @@ public class UTF8ToWin1251Converter extends Converter {
             }
             first = inputStream.read();
         }
+        inputStream.close();
+        outputStream.close();
     }
 }
