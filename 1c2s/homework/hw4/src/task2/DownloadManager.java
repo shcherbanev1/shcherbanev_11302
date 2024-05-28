@@ -16,6 +16,7 @@ public class DownloadManager {
         }
     }
 
+    // получение расширения файла
     private static String getExtension(String url) {
         StringBuilder ans = new StringBuilder();
         for (int i = url.length() - 1; i >= 0; i--) {
