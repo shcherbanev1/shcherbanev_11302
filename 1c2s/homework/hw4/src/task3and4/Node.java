@@ -3,7 +3,7 @@ package task3and4;
 import java.util.*;
 
 public class Node {
-    private String tagName;
+    private final String tagName;
     private String textContent;
     private final List<Node> children;
     private final Map<String, String> attributes;
@@ -17,10 +17,6 @@ public class Node {
 
     public String getTagName() {
         return tagName;
-    }
-
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
     }
 
     public String getTextContent() {

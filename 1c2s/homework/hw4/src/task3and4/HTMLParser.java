@@ -23,7 +23,6 @@ public class HTMLParser {
         SELF_CLOSABLE_TAGS.add("!DOCTYPE");
     }
 
-
     public DOMTree parse(String html) throws InvalidHTMLException {
 
         Stack<Node> stack = new Stack<>();
@@ -38,13 +37,15 @@ public class HTMLParser {
                 if (tagEnd == -1) { // Если открылось и не закрылось то хтмл кривой
                     throw new InvalidHTMLException();
                 }
+
                 // Все что между < >
                 String tagContent = html.substring(i + 1, tagEnd).trim();
+
                 // Закрывающий тег
                 if (tagContent.charAt(0) == '/') {
                     stack.pop();
                 } else {
-                    // Открывающий тег или самозакрывающийся тег
+                    // Открывающийся тег или самозакрывающийся тег
                     boolean selfClosing = SELF_CLOSABLE_TAGS.contains(getTagName(tagContent));
                     if (selfClosing) {
                         tagContent = tagContent.trim();

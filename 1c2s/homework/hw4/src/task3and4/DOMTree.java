@@ -17,11 +17,6 @@ public class DOMTree {
         return root;
     }
 
-//    @Override
-//    public String toString() {
-//        return root.toString();
-//    }
-
     public String toString() {
         return toStringNode(root);
     }
