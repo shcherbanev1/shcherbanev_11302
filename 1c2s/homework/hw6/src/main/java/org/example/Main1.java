@@ -31,7 +31,7 @@ public class Main1 {
                 }
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());;
+            System.out.println(e.getMessage());
         }
 
     }
